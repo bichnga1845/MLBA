@@ -86,7 +86,7 @@ def elbowMethod(df, columnsForElbow):
     plt.show()
 
 columns=['Age','Spending Score']
-elbowMethod(df2,columns)
+#elbowMethod(df2,columns)
 
 def runKMeans(X,cluster):
     model=KMeans(n_clusters=cluster,
@@ -99,6 +99,7 @@ def runKMeans(X,cluster):
     y_kmeans=model.fit_predict(X)
     return y_kmeans,centroids,labels
 
+#k=4=============================
 X=df2.loc[:,columns].values
 cluster=4
 colors=["red","green","blue","purple","black","pink","orange"]
@@ -134,6 +135,7 @@ def visualizeKMeans(X,y_kmeans,cluster,title,xlabel,ylabel,colors):
 columns=['Annual Income','Spending Score']
 #elbowMethod(df2,columns)
 
+#k=5==========================================================
 X=df2.loc[:,columns].values
 cluster=5
 colors=["red","green","blue","purple","black","pink","orange"]
@@ -156,7 +158,7 @@ df2["cluster"]=labels
 columns=['Age','Annual Income','Spending Score']
 #elbowMethod(df2,columns)
 
-
+#k=6======================================================
 X=df2.loc[:,columns].values
 cluster=6
 
@@ -178,88 +180,5 @@ def visualize3DKMeans(df, columns, hover_data,cluster):
     fig.update_layout(margin=dict(l=0,r=0,b=0,t=0))
     fig.show()
 
-hover_data=df2.columns
+#hover_data=df2.columns
 #visualize3DKMeans(df2,columns,hover_data,cluster)
-
-
-
-#exercise1
-def printCustomersPerCluster(df, cluster_col='cluster'):
-    clusters = df[cluster_col].unique()  # Lấy danh sách các giá trị cluster khác nhau
-    for c in sorted(clusters):
-        print(f"\n=== Cluster {c} ===")
-        cluster_data = df[df[cluster_col] == c]  # Lọc các cus thuộc cluster đó
-        print(cluster_data)
-
-# Cluster theo Age & Spending Score
-X = df2[['Age','Spending Score']].values
-y_kmeans, centroids, labels = runKMeans(X, 4)
-df2['cluster'] = labels
-#printCustomersPerCluster(df2)  # in console
-#=runFlaskCustomerCluster(df2)  # hiển thị web (nếu muốn)
-
-# Cluster theo Annual Income & Spending Score
-X = df2[['Annual Income','Spending Score']].values
-y_kmeans, centroids, labels = runKMeans(X, 5)
-df2['cluster'] = labels
-#printCustomersPerCluster(df2)
-
-# Cluster theo Age, Annual Income & Spending Score
-X = df2[['Age','Annual Income','Spending Score']].values
-y_kmeans, centroids, labels = runKMeans(X, 6)
-df2['cluster'] = labels
-#printCustomersPerCluster(df2)
-
-
-#exercise2
-columns = ['Age', 'Annual Income', 'Spending Score']
-X = df2.loc[:, columns].values
-cluster = 6
-
-y_kmeans, centroids, labels = runKMeans(X, cluster)
-df2['cluster'] = labels
-
-
-#  Flask
-@app.route("/")
-def show_customers():
-    html_content = ""
-    for c in sorted(df2['cluster'].unique()):
-        html_content += f"<h2>Cluster {c}</h2>"
-        cluster_data = df2[df2['cluster'] == c]
-        html_content += cluster_data.to_html(index=False, classes="table table-striped")
-
-    template = f"""
-    <html>
-    <head>
-        <title>Customer Clusters</title>
-        <link rel="stylesheet" 
-              href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    </head>
-    <body class="p-4">
-        <h1>Customers by Cluster (Cluster = 6)</h1>
-        {html_content}
-        <a href="/download" class="btn btn-primary mt-3">Download Excel</a>
-    </body>
-    </html>
-    """
-    return render_template_string(template)
-
-
-# --- Flask route xuất Excel ---
-@app.route("/download")
-def download_excel():
-    filename = "customers_clusters.xlsx"
-    df2.to_excel(filename, index=False)
-    return send_file(filename, as_attachment=True)
-
-
-# --- Chạy Flask ---
-#if __name__ == "__main__":
-    #app.run(debug=True)
-
-
-
-
-
-
