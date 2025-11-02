@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TranThiBichNga_HousePrediction</class>
+ <widget class="QWidget" name="TranThiBichNga_HousePrediction">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1920</width>
+    <height>1080</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>House Pricing Prediction</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1082</width>
+     <height>955</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayoutMain">
+    <item>
+     <widget class="QLabel" name="lblTitle">
+      <property name="styleSheet">
+       <string notr="true">
+        background-color: #99ff99;
+        font: bold 28pt &quot;Segoe UI&quot;;
+        color: #003300;
+        padding: 20px;
+        border-radius: 10px;
+       </string>
+      </property>
+      <property name="text">
+       <string>House Pricing Prediction</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayoutMain">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayoutLeft">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayoutButtons">
+          <item>
+           <widget class="QPushButton" name="buttonPickDataset">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              background-color: #66cc66;
+              color: white;
+              font: bold 14pt &quot;Segoe UI&quot;;
+              border-radius: 8px;
+             </string>
+            </property>
+            <property name="text">
+             <string>1. Pick Dataset</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="buttonViewDataset">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              background-color: #66cc66;
+              color: white;
+              font: bold 14pt &quot;Segoe UI&quot;;
+              border-radius: 8px;
+             </string>
+            </property>
+            <property name="text">
+             <string>2. View Dataset</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="buttonTrainModel">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              background-color: #66cc66;
+              color: white;
+              font: bold 14pt &quot;Segoe UI&quot;;
+              border-radius: 8px;
+             </string>
+            </property>
+            <property name="text">
+             <string>3. Train Model</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="buttonEvaluateModel">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">
+              background-color: #66cc66;
+              color: white;
+              font: bold 14pt &quot;Segoe UI&quot;;
+              border-radius: 8px;
+             </string>
+            </property>
+            <property name="text">
+             <string>4. Evaluate Model</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="Dataset">
+          <property name="styleSheet">
+           <string notr="true">
+            font: 12pt &quot;Segoe UI&quot;;
+           </string>
+          </property>
+          <property name="columnCount">
+           <number>7</number>
+          </property>
+          <column>
+           <property name="text">
+            <string>Avg. Area Income</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Avg. Area House Age</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Avg. Area Number of Rooms</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Avg. Area Number of Bedrooms</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Area Population</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Original Price</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Prediction Price</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayoutRight">
+        <item>
+         <widget class="QLabel" name="lblEvalStatus">
+          <property name="styleSheet">
+           <string notr="true">
+            background-color: #ccffcc;
+            font-weight: bold;
+            font-size: 14pt;
+            border-radius: 8px;
+            padding: 10px;
+           </string>
+          </property>
+          <property name="text">
+           <string>Evaluation is finished</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lblCoeff">
+          <property name="styleSheet">
+           <string notr="true">font: bold 14pt &quot;Segoe UI&quot;; color: #003300;</string>
+          </property>
+          <property name="text">
+           <string>Coefficient</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="Coefficients">
+          <property name="styleSheet">
+           <string notr="true">font: 12pt &quot;Segoe UI&quot;;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QFormLayout" name="formErrors">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lblMAE">
+            <property name="text">
+             <string>Mean Absolute Error (MAE):</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="labelMAE"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="lblMSE">
+            <property name="text">
+             <string>Mean Square Error (MSE):</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="labelMSE"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="lblRMSE">
+            <property name="text">
+             <string>Root Mean Square Error (RMSE):</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="labelRMSE"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QPushButton" name="buttonSaveModel">
+          <property name="minimumSize">
+           <size>
+            <width>220</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+            background-color: #66cc66; color: white; font: bold 14pt &quot;Segoe UI&quot;; border-radius: 8px;
+           </string>
+          </property>
+          <property name="text">
+           <string>5. Save Model</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QFrame" name="frameBottom">
+      <property name="styleSheet">
+       <string notr="true">background-color: #99ff99; border-radius: 10px; padding: 15px;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <layout class="QGridLayout" name="gridLayoutBottom">
+       <item row="0" column="0">
+        <widget class="QLabel" name="lblLoadModel">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>6. Load Model</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="lblIncome">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Avg. Area Income:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="labelIncome">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="lblHouseAge">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Avg. Area House Age:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="labelHouseAge">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="lblRooms">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Avg. Area Number of Rooms:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="labelRooms">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="lblBedrooms">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Avg. Area Number of Bedrooms:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="labelBedrooms">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="lblPopulation">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Area Population:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLineEdit" name="labelPopulation">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0" colspan="2">
+        <widget class="QPushButton" name="buttonPredictPrice">
+         <property name="minimumSize">
+          <size>
+           <width>400</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+           background-color: #66cc66; color: white; font: bold 14pt &quot;Segoe UI&quot;; border-radius: 8px;
+          </string>
+         </property>
+         <property name="text">
+          <string>7. Prediction House Pricing</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="lblPrediction">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Prediction Price:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QLineEdit" name="labelPrediction">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="lblFooter">
+      <property name="styleSheet">
+       <string notr="true">background-color: #ccffcc; font-style: italic; padding: 6px; border-radius: 5px;</string>
+      </property>
+      <property name="text">
+       <string>Designed by: Tran Thi Bich Nga</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight</set>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

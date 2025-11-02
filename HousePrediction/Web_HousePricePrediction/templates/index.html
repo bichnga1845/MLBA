@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🏡 Prediction Pricing House</title>
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #a8edea, #fed6e3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      padding: 40px 50px;
+      width: 400px;
+      text-align: center;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    h2 {
+      color: #2c3e50;
+      margin-bottom: 25px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    td {
+      padding: 10px 5px;
+      color: #2c3e50;
+      font-weight: 500;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: 1.5px solid #ccc;
+      border-radius: 10px;
+      outline: none;
+      transition: all 0.2s ease-in-out;
+    }
+
+    input[type="text"]:focus {
+      border-color: #3498db;
+      box-shadow: 0 0 5px #3498db66;
+    }
+
+    button {
+      background: linear-gradient(135deg, #3498db, #2ecc71);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #2ecc71, #3498db);
+      transform: scale(1.05);
+    }
+
+    #house_price {
+      background: #f0f3f7;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🏡 House Price Prediction</h2>
+    <form id="prediction_form" method="post">
+      <table>
+        <tr>
+          <td>Avg. Area Income:</td>
+          <td><input type="text" id="area_income_value" name="area_income_value" /></td>
+        </tr>
+        <tr>
+          <td>Avg. Area House Age:</td>
+          <td><input type="text" id="area_house_age_value" name="area_house_age_value" /></td>
+        </tr>
+        <tr>
+          <td>Avg. Area Number of Rooms:</td>
+          <td><input type="text" id="area_number_of_rooms_value" name="area_number_of_rooms_value" /></td>
+        </tr>
+        <tr>
+          <td>Avg. Area Number of Bedrooms:</td>
+          <td><input type="text" id="area_number_of_bedrooms_value" name="area_number_of_bedrooms_value" /></td>
+        </tr>
+        <tr>
+          <td>Area Population:</td>
+          <td><input type="text" id="area_population_value" name="area_population_value" /></td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <button id="doprediction_button" type="button">🔍 Predict</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Predicted Price:</td>
+          <td><input type="text" id="house_price" readonly /></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+
+  <script>
+    $(function(){
+      $('#doprediction_button').click(function(event){
+        event.preventDefault(); // Ngăn reload form
+
+        $.ajax({
+          url: '/doprediction',
+          type: 'POST',
+          data: $('#prediction_form').serialize(),
+          success: function(response){
+            console.log(response);
+            $('#house_price').val(response + " USD");
+          },
+          error: function(error){
+            console.log(error);
+            alert("Error: " + error.responseText);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
